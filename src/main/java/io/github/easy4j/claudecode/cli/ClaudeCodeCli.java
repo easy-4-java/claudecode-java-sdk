@@ -1,4 +1,4 @@
-package io.github.hiwepy.claudecode.cli;
+package io.github.easy4j.claudecode.cli;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
