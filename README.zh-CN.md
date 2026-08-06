@@ -2,7 +2,7 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-21-orange)] [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/claudecode-java-sdk) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 > [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI 的 Java SDK：
 > 通过子进程集成驱动本地 `claude` 命令行智能体
