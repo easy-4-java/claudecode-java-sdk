@@ -2,7 +2,7 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-green)
+[![Java](https://img.shields.io/badge/Java-8-orange)] [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 > Java SDK for the [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI:
 > subprocess integration that drives the `claude` command line agent
