@@ -1,154 +1,184 @@
+/*
+ * Copyright (c) 2018-present, easy-4-java (https://github.com/easy-4-java).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.easy4j.claudecode;
 
 import lombok.Data;
 
 /**
- * Claude Code CLI 客户端配置（纯 POJO，可与 Spring {@code @ConfigurationProperties} 映射）。
+ * Pure POJO holding every tunable of the {@link ClaudeCodeClient}.
+ *
+ * <p>Every field on this class maps to a single Claude Code CLI option.
+ * The {@link ClaudeCodeClient} reads the non-null values and turns them
+ * into a fully-populated {@code PrintOptions} on every invocation.</p>
+ *
+ * <p>The class is annotated with Lombok's {@code @Data} so getters,
+ * setters, {@code toString}, {@code equals} and {@code hashCode} are
+ * generated at compile time. It is intentionally framework-agnostic so it
+ * can be populated from Spring's {@code @ConfigurationProperties}, plain
+ * Java, JSON or a builder.</p>
+ *
+ * @author easy-4-java contributors
+ * @since 3.0.0
+ * @see ClaudeCodeClient
  */
 @Data
 public class ClaudeCodeClientConfig {
 
-    /** 本地 CLI 可执行文件名或绝对路径 */
+    /** Local CLI executable name or absolute path. */
     private String localExecutable = "claude";
 
-    /** 命令执行超时（秒） */
+    /** Command execution timeout in seconds. */
     private int localTimeoutSeconds = 600;
 
-    /** 探测 CLI 是否可用的超时（秒） */
+    /** Probe timeout in seconds used to verify that the CLI is available. */
     private int localProbeTimeoutSeconds = 5;
 
-    /** 默认模型（如 sonnet, opus, claude-sonnet-4-6） */
+    /** Default model identifier (e.g. {@code sonnet}, {@code opus}, {@code claude-sonnet-4-6}). */
     private String defaultModel;
 
-    /** 默认 effort level（low, medium, high, xhigh, max） */
+    /** Default reasoning effort level ({@code low, medium, high, xhigh, max}). */
     private String defaultEffort;
 
-    /** 默认权限模式（default, acceptEdits, bypassPermissions, plan, auto） */
+    /** Default permission mode
+     *  ({@code default, acceptEdits, bypassPermissions, plan, auto}). */
     private String defaultPermissionMode;
 
-    /** 默认输出格式（text, json, stream-json） */
+    /** Default output format ({@code text}, {@code json} or {@code stream-json}). */
     private String defaultOutputFormat = "stream-json";
 
-    /** 是否包含部分消息块 */
+    /** Whether to include partial message chunks in the {@code stream-json} envelope. */
     private boolean includePartialMessages = true;
 
-    /** 是否跳过 session 持久化 */
+    /** Skip session persistence (one-shot invocation). */
     private boolean noSessionPersistence;
 
-    /** Session 名称前缀 */
+    /** Display name to give the session. */
     private String sessionName;
 
-    /** 额外允许的目录 */
+    /** Additional working directory allowed for tool execution. */
     private String addDir;
 
-    /** 最大预算（美元） */
+    /** Maximum spend in USD. */
     private Double maxBudgetUsd;
 
-    /** JSON Schema 文件路径（用于结构化输出） */
+    /** Path to a JSON-Schema file used to constrain the response shape. */
     private String jsonSchema;
 
-    /** 是否启用 worktree 隔离 */
+    /** Run inside an isolated git worktree. */
     private boolean worktree;
 
-    /** 是否启用 Bare 模式 */
+    /** Run in bare mode (minimal scaffolding). */
     private boolean bare;
 
-    /** 自定义 system prompt */
+    /** Custom system prompt. */
     private String systemPrompt;
 
-    /** system prompt 文件路径 */
+    /** Path to a system prompt file. */
     private String systemPromptFile;
 
-    /** 追加的 system prompt */
+    /** Text appended to the default system prompt. */
     private String appendSystemPrompt;
 
-    /** 追加的 system prompt 文件路径 */
+    /** Path to a file appended to the default system prompt. */
     private String appendSystemPromptFile;
 
-    /** 单 agent 覆盖 */
+    /** Single-agent override. */
     private String agent;
 
-    /** 自定义 agents JSON */
+    /** Custom agents JSON payload. */
     private String agents;
 
-    /** 限制允许的工具（逗号分隔） */
+    /** Comma-separated list of tools explicitly allowed. */
     private String allowedTools;
 
-    /** 禁止的工具（逗号分隔） */
+    /** Comma-separated list of tools explicitly disallowed. */
     private String disallowedTools;
 
-    /** 内置工具集（default / 空字符串 / 具体工具列表） */
+    /** Built-in tool set identifier ({@code default} / empty / explicit list). */
     private String tools;
 
-    /** MCP 配置文件路径 */
+    /** MCP configuration file or JSON. */
     private String mcpConfig;
 
-    /** 仅使用 --mcp-config 指定的 MCP server */
+    /** Whether the CLI should use only the MCP servers declared in {@link #mcpConfig}. */
     private boolean strictMcpConfig;
 
-    /** 默认模型过载时的 fallback 模型 */
+    /** Fallback model used when {@link #defaultModel} is overloaded. */
     private String fallbackModel;
 
-    /** 是否启用 debug */
+    /** Enable debug logging. */
     private boolean debug;
 
-    /** debug 分类过滤器（如 "api,hooks"） */
+    /** Comma-separated debug category filter (e.g. {@code api,hooks}). */
     private String debugFilter;
 
-    /** debug 日志输出文件路径 */
+    /** Path to a debug log file. */
     private String debugFile;
 
-    /** 是否启用 verbose */
+    /** Enable verbose CLI output. */
     private boolean verbose;
 
-    /** Beta 头 */
+    /** Custom {@code betas} header values. */
     private String betas;
 
-    /** 是否连接 IDE */
+    /** Connect the CLI to an IDE. */
     private boolean ide;
 
-    /** 是否在 Chrome 中集成 */
+    /** Integrate the CLI with Chrome. */
     private boolean chrome;
 
-    /** 禁用 Chrome 集成 */
+    /** Disable Chrome integration. */
     private boolean noChrome;
 
-    /** 启动时下载的文件资源（格式: file_id:relative_path） */
+    /** File resources to download on startup ({@code file_id:relative_path}). */
     private String fileResources;
 
-    /** 插件目录或 .zip 路径（可多个） */
+    /** Plugin directory or {@code .zip} path (multiple). */
     private String[] pluginDir;
 
-    /** 插件 URL（可多个） */
+    /** Plugin URL (multiple). */
     private String[] pluginUrl;
 
-    /** 额外 settings 文件或 JSON */
+    /** Additional settings file or JSON. */
     private String settings;
 
-    /** settings 来源（user, project, local） */
+    /** Settings sources to load ({@code user, project, local}). */
     private String settingSources;
 
-    /** tmux 模式（true 或 classic） */
+    /** tmux mode ({@code true} or {@code classic}). */
     private String tmux;
 
-    /** Remote Control 名称 */
+    /** Remote-control session name. */
     private String remoteControl;
 
-    /** Remote Control session 名称前缀 */
+    /** Remote-control session name prefix. */
     private String remoteControlSessionNamePrefix;
 
-    /** 允许跳过权限作为选项（不默认启用） */
+    /** Allow bypassing permissions as a selectable option (off by default). */
     private boolean allowDangerouslySkipPermissions;
 
-    /** 禁用 slash 命令（skills） */
+    /** Disable slash commands (skills). */
     private boolean disableSlashCommands;
 
-    /** 将动态 system prompt 部分移到首条 user message */
+    /** Move dynamic system-prompt sections into the first user message. */
     private boolean excludeDynamicSystemPromptSections;
 
-    /** 在 stream-json 中包含 hook 事件 */
+    /** Include hook events in the {@code stream-json} envelope. */
     private boolean includeHookEvents;
 
-    /** [DEPRECATED] 启用 MCP debug 模式 */
+    /** [DEPRECATED] enable the MCP debug mode. */
     private boolean mcpDebug;
 }
