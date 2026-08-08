@@ -2,7 +2,7 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://github.com/easy-4-java/claudecode-java-sdk) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/claudecode-java-sdk) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 > Java SDK for the [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI:
 > subprocess integration that drives the `claude` command line agent
@@ -73,7 +73,7 @@ Typical scenarios:
 
 | Requirement | Version / Notes |
 | :--- | :--- |
-| JDK | 17+ |
+| JDK | 21+ |
 | Maven | 3.0+ (enforced; Maven Wrapper `./mvnw` included) |
 | Claude Code CLI | `claude` must be installed and available (`localExecutable` configures the path) |
 
@@ -130,14 +130,14 @@ Maven:
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>claudecode-java-sdk</artifactId>
-    <version>2.0.x.x.20260630-SNAPSHOT</version>
+    <version>3.0.x.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
 Gradle:
 
 ```groovy
-implementation 'io.github.easy4j:claudecode-java-sdk:2.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:claudecode-java-sdk:3.0.x.x.20260630-SNAPSHOT'
 ```
 
 ## 6. Quick Start

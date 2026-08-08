@@ -2,7 +2,7 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://github.com/easy-4-java/claudecode-java-sdk) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/claudecode-java-sdk) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 > [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI 的 Java SDK：
 > 通过子进程集成驱动本地 `claude` 命令行智能体
@@ -71,7 +71,7 @@ SDK 覆盖：
 
 | 要求 | 版本 / 说明 |
 | :--- | :--- |
-| JDK | 17+ |
+| JDK | 21+ |
 | Maven | 3.0+（enforcer 强制；项目内置 Maven Wrapper `./mvnw`） |
 | Claude Code CLI | 必须安装且可执行（`localExecutable` 可配置路径） |
 
@@ -128,14 +128,14 @@ Maven：
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>claudecode-java-sdk</artifactId>
-    <version>2.0.x.x.20260630-SNAPSHOT</version>
+    <version>3.0.x.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
 Gradle：
 
 ```groovy
-implementation 'io.github.easy4j:claudecode-java-sdk:2.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:claudecode-java-sdk:3.0.x.x.20260630-SNAPSHOT'
 ```
 
 ## 6. 快速开始
