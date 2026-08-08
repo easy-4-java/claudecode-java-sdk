@@ -69,7 +69,7 @@ import java.util.Objects;
  * the underlying executor does not hold any persistent resources
  * beyond a per-invocation subprocess.</p>
  *
- * @author easy-4-java contributors
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @since 3.0.0
  * @see ClaudeCodeCli
  * @see ClaudeCodeCliExecutor
@@ -1205,7 +1205,7 @@ public class ClaudeCodeClient implements AutoCloseable {
      * that contains the parsed message stream, the final result envelope
      * and the raw CLI result for diagnostics.
      *
-     * @author easy-4-java contributors
+     * @author [@Loong Wan](https://github.com/loong10k)
      * @since 3.0.0
      */
     public static class StreamResult {

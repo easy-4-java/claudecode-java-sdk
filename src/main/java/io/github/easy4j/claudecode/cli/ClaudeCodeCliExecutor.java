@@ -36,7 +36,7 @@ import java.io.IOException;
  * that returns {@code true} when the CLI is reachable on the local
  * {@code PATH} (or via {@link ClaudeCodeClientConfig#getLocalExecutable()}).</p>
  *
- * @author easy-4-java contributors
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @since 3.0.0
  * @see ClaudeCodeCli
  * @see ClaudeCodeCliResult

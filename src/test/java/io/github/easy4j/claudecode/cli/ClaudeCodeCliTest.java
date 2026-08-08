@@ -650,14 +650,21 @@ class ClaudeCodeCliTest {
     void printOptionsShouldBeEmptyWithPromptOnly() {
         ClaudeCodeCli.PrintOptions opts = new ClaudeCodeCli.PrintOptions("hi");
         String[] args = opts.toArgs();
-        assertArrayEquals(new String[]{"-p", "hi"}, args);
+        // PrintOptions defaults outputFormat="stream-json" and includePartialMessages=true
+        assertContains(args, "--output-format", "stream-json", "--include-partial-messages", "-p", "hi");
     }
 
     @Test
     void printOptionsShouldIncludePromptEvenWhenNull() {
         ClaudeCodeCli.PrintOptions opts = new ClaudeCodeCli.PrintOptions(null);
         String[] args = opts.toArgs();
-        assertArrayEquals(new String[]{"-p"}, args);
+        // PrintOptions defaults outputFormat="stream-json" and includePartialMessages=true;
+        // prompt is null so only "-p" is appended without a value.
+        List<String> list = Arrays.asList(args);
+        assertTrue(list.contains("-p"));
+        assertTrue(list.contains("--output-format"));
+        assertTrue(list.contains("stream-json"));
+        assertTrue(list.contains("--include-partial-messages"));
     }
 
     @Test
@@ -818,11 +825,15 @@ class ClaudeCodeCliTest {
                 .debugFilter("api");
         assertContains(opts.toArgs(), "--debug", "api", "-p", "hi");
         List<String> args = Arrays.asList(opts.toArgs());
-        // The standalone --debug (without value) must not appear when a filter is set.
-        long standaloneDebug = args.stream()
+        // When debugFilter is set, --debug appears once (followed by the filter value);
+        // the else-if branch for standalone --debug is skipped.
+        long debugCount = args.stream()
                 .filter("--debug"::equals)
                 .count();
-        assertEquals(0L, standaloneDebug);
+        assertEquals(1L, debugCount);
+        // Verify the filter value immediately follows --debug
+        int debugIdx = args.indexOf("--debug");
+        assertEquals("api", args.get(debugIdx + 1));
     }
 
     @Test
@@ -905,9 +916,9 @@ class ClaudeCodeCliTest {
         List<String> list = Arrays.asList(haystack);
         int idx = 0;
         for (String n : needle) {
-            int found = list.indexOf(n);
-            assertTrue(found >= idx, "expected " + n + " at or after index " + idx + " in " + list);
-            idx = found + 1;
+            int found = list.subList(idx, list.size()).indexOf(n);
+            assertTrue(found >= 0, "expected " + n + " at or after index " + idx + " in " + list);
+            idx = idx + found + 1;
         }
     }
 }

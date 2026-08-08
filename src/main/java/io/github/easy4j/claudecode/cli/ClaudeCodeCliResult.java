@@ -25,7 +25,7 @@ import lombok.Data;
  * ({@link #isSuccess()}, {@link #isTimeout()}) make common success and
  * timeout checks cheap.</p>
  *
- * @author easy-4-java contributors
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @since 3.0.0
  */
 @Data

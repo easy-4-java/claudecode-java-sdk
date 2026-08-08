@@ -28,7 +28,7 @@ import lombok.Data;
  * ({@link #totalCostUsd}) and a nested {@link Usage} breakdown of token
  * consumption.</p>
  *
- * @author easy-4-java contributors
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @since 3.0.0
  * @see ClaudeMessage
  */
@@ -56,7 +56,7 @@ public class ClaudeResult {
     /**
      * Token usage breakdown for a single invocation.
      *
-     * @author easy-4-java contributors
+     * @author [@Loong Wan](https://github.com/loong10k)
      * @since 3.0.0
      */
     @Data

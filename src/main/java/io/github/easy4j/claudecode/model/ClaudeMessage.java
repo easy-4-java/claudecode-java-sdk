@@ -30,7 +30,7 @@ import lombok.Data;
  * {@link #toolUseResult} values are typed as {@link Object} so they can
  * hold either text, structured content blocks or arbitrary JSON.</p>
  *
- * @author easy-4-java contributors
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @since 3.0.0
  * @see ClaudeResult
  */

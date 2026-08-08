@@ -49,8 +49,10 @@ class ClaudeCodeCliExecutorTest {
         assertEquals(0, result.getExitCode());
         assertTrue(result.isSuccess());
         assertFalse(result.isTimeout());
-        assertTrue(result.getStdout().toLowerCase().contains("version"),
-                "expected version output, got: " + result.getStdout());
+        // java -version outputs to stderr on most JVMs
+        String combined = (result.getStdout() + " " + result.getStderr()).toLowerCase();
+        assertTrue(combined.contains("version"),
+                "expected version output, got stdout=" + result.getStdout() + " stderr=" + result.getStderr());
     }
 
     @Test
