@@ -30,7 +30,7 @@ import lombok.Data;
  * {@link #toolUseResult} values are typed as {@link Object} so they can
  * hold either text, structured content blocks or arbitrary JSON.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 3.0.0
  * @see ClaudeResult
  */
