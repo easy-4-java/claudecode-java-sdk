@@ -30,7 +30,7 @@ import lombok.Data;
  * can be populated from Spring's {@code @ConfigurationProperties}, plain
  * Java, JSON or a builder.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 3.0.0
  * @see ClaudeCodeClient
  */

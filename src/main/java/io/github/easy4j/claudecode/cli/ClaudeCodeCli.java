@@ -49,7 +49,7 @@ import java.util.List;
  *       ({@link #namedSession(String, String)}).</li>
  * </ul>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 3.0.0
  * @see ClaudeCodeCliExecutor
  * @see <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code CLI</a>
@@ -1082,7 +1082,7 @@ public class ClaudeCodeCli {
      * produces the final argument array passed to
      * {@link ClaudeCodeCliExecutor#execute(String...)}.</p>
      *
-     * @author [@Loong Wan](https://github.com/loong10k)
+     * @author <a href="https://github.com/loong10k">Loong Wan</a>
      * @since 3.0.0
      */
     public static class PrintOptions {
