@@ -15,15 +15,16 @@
  */
 package io.github.easy4j.claudecode;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import io.github.easy4j.claudecode.cli.ClaudeCodeCli;
 import io.github.easy4j.claudecode.cli.ClaudeCodeCliExecutor;
 import io.github.easy4j.claudecode.cli.ClaudeCodeCliResult;
 import io.github.easy4j.claudecode.model.ClaudeAgent;
 import io.github.easy4j.claudecode.model.ClaudeMessage;
 import io.github.easy4j.claudecode.model.ClaudeResult;
-import com.fasterxml.jackson.core.type.TypeReference;
+import tools.jackson.core.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,8 +85,7 @@ public class ClaudeCodeClient implements AutoCloseable {
      * This is the same mapper used for parsing both {@code stream-json}
      * payloads and the {@code claude agents --json} response.
      */
-    private static final ObjectMapper MAPPER = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private static final ObjectMapper MAPPER = JsonMapper.builder().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES).build();
 
     private final ClaudeCodeClientConfig config;
     private final ClaudeCodeCli cli;
