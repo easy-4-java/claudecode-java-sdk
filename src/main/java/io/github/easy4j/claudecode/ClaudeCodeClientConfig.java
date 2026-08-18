@@ -1,4 +1,4 @@
-package io.github.hiwepy.claudecode;
+package io.github.easy4j.claudecode;
 
 import lombok.Data;
 

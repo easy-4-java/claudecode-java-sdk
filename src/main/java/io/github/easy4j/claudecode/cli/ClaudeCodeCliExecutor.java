@@ -1,6 +1,6 @@
-package io.github.hiwepy.claudecode.cli;
+package io.github.easy4j.claudecode.cli;
 
-import io.github.hiwepy.claudecode.ClaudeCodeClientConfig;
+import io.github.easy4j.claudecode.ClaudeCodeClientConfig;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteWatchdog;
