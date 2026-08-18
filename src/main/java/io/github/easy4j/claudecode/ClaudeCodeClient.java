@@ -1,13 +1,13 @@
-package io.github.hiwepy.claudecode;
+package io.github.easy4j.claudecode;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.hiwepy.claudecode.cli.ClaudeCodeCli;
-import io.github.hiwepy.claudecode.cli.ClaudeCodeCliExecutor;
-import io.github.hiwepy.claudecode.cli.ClaudeCodeCliResult;
-import io.github.hiwepy.claudecode.model.ClaudeAgent;
-import io.github.hiwepy.claudecode.model.ClaudeMessage;
-import io.github.hiwepy.claudecode.model.ClaudeResult;
+import io.github.easy4j.claudecode.cli.ClaudeCodeCli;
+import io.github.easy4j.claudecode.cli.ClaudeCodeCliExecutor;
+import io.github.easy4j.claudecode.cli.ClaudeCodeCliResult;
+import io.github.easy4j.claudecode.model.ClaudeAgent;
+import io.github.easy4j.claudecode.model.ClaudeMessage;
+import io.github.easy4j.claudecode.model.ClaudeResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
