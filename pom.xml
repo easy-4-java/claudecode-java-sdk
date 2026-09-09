@@ -406,7 +406,6 @@
             </activation>
             <properties>
                 <!-- Dependency versions -->
-                <additionalparam>-Xdoclint:none</additionalparam>
             </properties>
         </profile>
         <profile>
