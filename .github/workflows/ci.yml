@@ -1,18 +1,19 @@
-# CI workflow for the feature/3.0.x line (JDK 21)
+# CI workflow for the feature/1.0.x line (JDK 8)
 #
 # Triggers:
-#   - push / pull_request on the feature/3.0.x branch
+#   - push / pull_request on the feature/1.0.x branch
 #   - manual workflow_dispatch
 #
-# Runs `mvn -B clean verify` which includes the JaCoCo coverage gate
+# Runs `mvn -B clean verify` (runner Maven 3 — this branch's POM is
+# modelVersion 4.0.0) which includes the JaCoCo coverage gate
 # (90% line coverage, haltOnFailure=false) configured in the POM.
 name: CI
 
 on:
   push:
-    branches: [feature/3.0.x]
+    branches: [feature/1.0.x]
   pull_request:
-    branches: [feature/3.0.x]
+    branches: [feature/1.0.x]
   workflow_dispatch:
 
 permissions:
@@ -20,18 +21,18 @@ permissions:
 
 jobs:
   build:
-    name: JDK 21 Build & Verify
+    name: JDK 8 Build & Verify
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - name: Checkout source
         uses: actions/checkout@v7
 
-      - name: Set up JDK 21
+      - name: Set up JDK 8
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '8'
           cache: maven
 
       - name: Build and verify with JaCoCo coverage gate
