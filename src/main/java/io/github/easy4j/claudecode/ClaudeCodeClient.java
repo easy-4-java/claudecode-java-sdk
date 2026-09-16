@@ -17,6 +17,7 @@ package io.github.easy4j.claudecode;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.github.easy4j.claudecode.cli.ClaudeCodeCli;
 import io.github.easy4j.claudecode.cli.ClaudeCodeCliExecutor;
 import io.github.easy4j.claudecode.cli.ClaudeCodeCliResult;
@@ -84,8 +85,7 @@ public class ClaudeCodeClient implements AutoCloseable {
      * This is the same mapper used for parsing both {@code stream-json}
      * payloads and the {@code claude agents --json} response.
      */
-    private static final ObjectMapper MAPPER = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private static final ObjectMapper MAPPER = JsonMapper.builder().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES).build();
 
     private final ClaudeCodeClientConfig config;
     private final ClaudeCodeCli cli;
@@ -1066,6 +1066,61 @@ public class ClaudeCodeClient implements AutoCloseable {
      * @return the underlying CLI result
      */
     public ClaudeCodeCliResult idePrint(String prompt) { return cli.idePrint(prompt); }
+
+    // ============================================================
+    // background sessions / daemon / gateway / import / runner
+    // ============================================================
+
+    /** Attaches to a background session via {@code claude attach <id>}. @param sessionId background session id. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult attach(String sessionId) { return cli.attach(sessionId); }
+
+    /** Prints recent background-session output via {@code claude logs <id>}. @param sessionId background session id. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult logs(String sessionId) { return cli.logs(sessionId); }
+
+    /** Restarts a background session via {@code claude respawn <id>}. @param sessionId background session id. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult respawn(String sessionId) { return cli.respawn(sessionId); }
+
+    /** Restarts every running background session via {@code claude respawn --all}. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult respawnAll() { return cli.respawnAll(); }
+
+    /** Removes a background session via {@code claude rm <id>}. @param sessionId background session id. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult rm(String sessionId) { return cli.rm(sessionId); }
+
+    /** Removes a background session with extra flags via {@code claude rm <id> <flags...>}. @param sessionId background session id. @param flags flags forwarded verbatim. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult rm(String sessionId, String... flags) { return cli.rm(sessionId, flags); }
+
+    /** Stops a background session via {@code claude stop <id>} (alias {@code kill}). @param sessionId background session id. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult stop(String sessionId) { return cli.stop(sessionId); }
+
+    /** Prints the background-supervisor state via {@code claude daemon status}. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult daemonStatus() { return cli.daemonStatus(); }
+
+    /** Stops the background supervisor via {@code claude daemon stop}. @param any pass {@code --any}. @param keepWorkers pass {@code --keep-workers}. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult daemonStop(boolean any, boolean keepWorkers) { return cli.daemonStop(any, keepWorkers); }
+
+    /** Starts the self-hosted gateway server via {@code claude gateway <args...>}. @param args arguments forwarded verbatim. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult gateway(String... args) { return cli.gateway(args); }
+
+    /** Runs the interactive agent import via {@code claude import <args...>} ({@code import} is a Java keyword). @param args arguments forwarded verbatim. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult importSessions(String... args) { return cli.importSessions(args); }
+
+    /** Runs the self-hosted runner via {@code claude self-hosted-runner <args...>}. @param args subcommand and arguments forwarded verbatim. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult selfHostedRunner(String... args) { return cli.selfHostedRunner(args); }
+
+    /** Runs the MCP OAuth flow via {@code claude mcp login <name>}. @param name MCP server name. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult mcpLogin(String name) { return cli.mcpLogin(name); }
+
+    /** Runs the headless MCP OAuth flow via {@code claude mcp login <name> --no-browser}. @param name MCP server name. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult mcpLoginNoBrowser(String name) { return cli.mcpLoginNoBrowser(name); }
+
+    /** Clears stored MCP OAuth credentials via {@code claude mcp logout <name>}. @param name MCP server name. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult mcpLogout(String name) { return cli.mcpLogout(name); }
+
+    /** Prints built-in auto-mode rules via {@code claude auto-mode defaults}. @param label optional label prefix; may be {@code null}. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult autoModeDefaults(String label) { return cli.autoModeDefaults(label); }
+
+    /** Restores default auto-mode config via {@code claude auto-mode reset}. @param assumeYes pass {@code -y}. @return the raw CLI invocation result; never {@code null}. @since 3.0.0 */
+    public ClaudeCodeCliResult autoModeReset(boolean assumeYes) { return cli.autoModeReset(assumeYes); }
 
     /**
      * Execute an arbitrary CLI argument vector. The supplied args are

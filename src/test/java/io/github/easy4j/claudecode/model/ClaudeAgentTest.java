@@ -17,6 +17,7 @@ package io.github.easy4j.claudecode.model;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,8 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 class ClaudeAgentTest {
 
-    private final ObjectMapper mapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private final ObjectMapper mapper = JsonMapper.builder().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES).build();
 
     @Test
     void shouldDeserialiseAllSnakeCaseFields() throws Exception {

@@ -103,6 +103,65 @@ class ClaudeCodeCliExecutorTest {
     }
 
     @Test
+    void shouldPreserveRealExitCodeAndStreamsOnNonZeroExit() {
+        ClaudeCodeCliExecutor exec = newExecutorFor("/bin/sh");
+
+        ClaudeCodeCliResult result = exec.execute("-c", "echo out-marker; echo err-marker 1>&2; exit 7");
+
+        assertEquals(7, result.getExitCode(), "the real exit code must survive ExecuteException handling");
+        assertFalse(result.isSuccess());
+        assertFalse(result.isTimeout());
+        assertTrue(result.getStdout().contains("out-marker"), "stdout must survive a non-zero exit");
+        assertTrue(result.getStderr().contains("err-marker"), "stderr must survive a non-zero exit");
+    }
+
+    @Test
+    void shouldPassArgumentsRawWithoutEmbeddedQuotes() {
+        ClaudeCodeCliExecutor exec = newExecutorFor("/bin/echo");
+
+        // commons-exec's default quoting would embed literal double quotes in
+        // multi-word arguments; the child must receive them raw.
+        ClaudeCodeCliResult result = exec.execute("Write a failing test", "-c", "key=some value");
+
+        assertEquals("Write a failing test -c key=some value", result.getStdout());
+    }
+
+    @Test
+    void shouldFeedStdinToChildProcess() {
+        // `cat` with no file arguments echoes its stdin verbatim.
+        ClaudeCodeCliExecutor exec = newExecutorFor("/bin/cat");
+
+        ClaudeCodeCliResult result = exec.executeWithStdin("piped-payload");
+
+        assertEquals(0, result.getExitCode());
+        assertEquals("piped-payload", result.getStdout());
+    }
+
+    @Test
+    void shouldExecuteWithoutStdinAsBefore() {
+        ClaudeCodeCliExecutor exec = newExecutorFor("/bin/echo");
+
+        assertEquals("plain", exec.executeWithStdin(null, "plain").getStdout());
+        assertEquals("plain", exec.executeWithStdin("", "plain").getStdout());
+    }
+
+    @Test
+    void shouldPassEnvironmentOverridesToChildProcess() {
+        ClaudeCodeClientConfig config = new ClaudeCodeClientConfig();
+        config.setLocalExecutable("/bin/sh");
+        config.setLocalTimeoutSeconds(5);
+        java.util.Map<String, String> env = new java.util.HashMap<>();
+        env.put("CLAUDE_SDK_ENV_PROBE", "env-probe-hit");
+        config.setEnvironment(env);
+        ClaudeCodeCliExecutor exec = new ClaudeCodeCliExecutor(config);
+
+        ClaudeCodeCliResult result = exec.execute("-c", "printf %s \"$CLAUDE_SDK_ENV_PROBE\"");
+
+        assertEquals("env-probe-hit", result.getStdout(),
+                "configured environment overrides must reach the child process");
+    }
+
+    @Test
     void shouldExposeConfigBehaviourOnSuccessAndFailure() {
         ClaudeCodeClientConfig config = new ClaudeCodeClientConfig();
         config.setLocalExecutable("java");
