@@ -125,8 +125,8 @@ public class ClaudeCodeCliExecutor {
             int exitCode = environment == null
                     ? executor.execute(cmd)
                     : executor.execute(cmd, environment);
-            String out = stdout.toString().trim();
-            String err = stderr.toString().trim();
+            String out = stdout.toString(java.nio.charset.StandardCharsets.UTF_8).trim();
+            String err = stderr.toString(java.nio.charset.StandardCharsets.UTF_8).trim();
             log.debug("claude CLI executed: exitCode={}, stdout.len={}", exitCode, out.length());
             if (watchdog.killedProcess()) {
                 return new ClaudeCodeCliResult(-1, out, "claude CLI timed out after " + timeoutMs + " ms\n" + err);
@@ -139,8 +139,8 @@ public class ClaudeCodeCliExecutor {
             // with the real exit code instead of discarding the output. The
             // deadline check makes the timeout verdict race-free even when
             // {@code watchdog.killedProcess()} has not observed the kill yet.
-            String out = stdout.toString().trim();
-            String err = stderr.toString().trim();
+            String out = stdout.toString(java.nio.charset.StandardCharsets.UTF_8).trim();
+            String err = stderr.toString(java.nio.charset.StandardCharsets.UTF_8).trim();
             boolean timedOut = watchdog.killedProcess()
                     || System.nanoTime() - startNanos >= timeoutMs * 1_000_000L;
             if (timedOut) {
