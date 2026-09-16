@@ -63,11 +63,21 @@ Typical scenarios:
 | Structured output (JSON Schema) | Active development | `printWithSchema(prompt, jsonSchema)` |
 | Stream parsing | Active development | `printStreamJsonAndParse` → `List<ClaudeMessage>` + final `ClaudeResult` |
 | Session lifecycle | Active development | `continueSession`, `resumeSession`, `continueForkSession`, `resumeForkSession`, `withSessionId`, `namedSession`, `printNoPersistence` |
+| Subcommands | Active development | `mcp` (list/add/get/remove/serve/login/logout), `plugin`, `doctor`, `install`, `auth` (login/logout/status), `agents`, `update`, `setupToken`, `projectPurge`, `ultrareview`, `remoteControl`, `autoMode` |
+| Background sessions & daemon | Active development | `attach`, `logs`, `respawn`, `respawnAll`, `rm`, `stop`, `daemonStatus`, `daemonStop` |
+| Gateway / import / runner | Active development | `gateway`, `importSessions` (`claude import`; Java keyword), `selfHostedRunner` |
+| v2.1.x print flags | Active development | `--advisor`, `--append-subagent-system-prompt(-file)`, `--autocompact`, `--ax-screen-reader`, `--bg`+`--exec`, `--cloud`+`--environment`+`--ref`, `--forward-subagent-text`, `--init`/`--init-only`/`--maintenance`, `--max-turns`, `--permission-prompt-tool`, `--permission-prompts`, `--restricted`, `--safe-mode` |
+| Environment overrides | Active development | `config.environment` merges `ANTHROPIC_*` / `CLAUDE_*` / proxy variables over the inherited process environment |
 | Config model | Active development | `ClaudeCodeClientConfig` POJO (plain, Spring-bindable) |
 | CLI availability probe | Active development | `ClaudeCodeCliExecutor.probe()` |
 
+> **Upgrade notes**: CLI arguments are passed to the child process raw —
+> multi-word prompts no longer arrive wrapped in embedded literal quotes.
+> Non-zero CLI exits preserve the real exit code and both captured streams
+> instead of collapsing to `exitCode=-1` with empty output.
+
 > **Assumption**: the capability statuses above reflect the current state of the
-> 1.0.x branch; the module is under active development.
+> active branch; the module is under active development.
 
 ## 3. Requirements & Compatibility
 
@@ -191,6 +201,7 @@ There is no configuration file of its own. Key fields:
 | `allowedTools` / `disallowedTools` / `tools` | String | - | Tool restrictions |
 | `mcpConfig` / `strictMcpConfig` | String / boolean | - | MCP configuration |
 | `debug` / `debugFilter` / `debugFile` | - | - | Debug options |
+| `environment` | Map<String, String> | - | Extra environment variables for every CLI invocation (`ANTHROPIC_API_KEY`, `ANTHROPIC_BASE_URL`, `ANTHROPIC_MODEL`, `HTTP_PROXY`, ...), merged over the inherited process environment |
 
 ## 8. Core Usage / API
 

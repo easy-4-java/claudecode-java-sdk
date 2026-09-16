@@ -639,7 +639,7 @@ class ClaudeCodeCliTest {
     @Test
     void shouldIssueAutoMode() {
         cli.autoMode();
-        assertArgs("auto-mode");
+        assertArgs("auto-mode", "defaults");
     }
 
     // ============================================================
@@ -920,5 +920,148 @@ class ClaudeCodeCliTest {
             assertTrue(found >= 0, "expected " + n + " at or after index " + idx + " in " + list);
             idx = idx + found + 1;
         }
+    }
+
+
+    // ------------------------------------------------------------
+    // newly aligned subcommands (v2.1.x CLI surface)
+    // ------------------------------------------------------------
+
+    @Test
+    void shouldIssueMcpLogin() {
+        cli.mcpLogin("srv");
+        assertArgs("mcp", "login", "srv");
+    }
+
+    @Test
+    void shouldIssueMcpLoginNoBrowser() {
+        cli.mcpLoginNoBrowser("srv");
+        assertArgs("mcp", "login", "srv", "--no-browser");
+    }
+
+    @Test
+    void shouldIssueMcpLogout() {
+        cli.mcpLogout("srv");
+        assertArgs("mcp", "logout", "srv");
+    }
+
+    @Test
+    void shouldIssueAttach() {
+        cli.attach("bg-1");
+        assertArgs("attach", "bg-1");
+    }
+
+    @Test
+    void shouldIssueLogs() {
+        cli.logs("bg-1");
+        assertArgs("logs", "bg-1");
+    }
+
+    @Test
+    void shouldIssueRespawnAndRespawnAll() {
+        cli.respawn("bg-1");
+        assertArrayEquals(new String[]{"respawn", "bg-1"}, exec.calls.get(0));
+        cli.respawnAll();
+        assertArrayEquals(new String[]{"respawn", "--all"}, exec.calls.get(1));
+    }
+
+    @Test
+    void shouldIssueRmWithAndWithoutFlags() {
+        cli.rm("bg-1");
+        assertArrayEquals(new String[]{"rm", "bg-1"}, exec.calls.get(0));
+        cli.rm("bg-1", "--force-remove-worktree", "wt-9");
+        assertArrayEquals(new String[]{"rm", "bg-1", "--force-remove-worktree", "wt-9"}, exec.calls.get(1));
+    }
+
+    @Test
+    void shouldIssueStop() {
+        cli.stop("bg-1");
+        assertArgs("stop", "bg-1");
+    }
+
+    @Test
+    void shouldIssueDaemonStatusAndStop() {
+        cli.daemonStatus();
+        assertArrayEquals(new String[]{"daemon", "status"}, exec.calls.get(0));
+        cli.daemonStop(true, true);
+        assertArrayEquals(new String[]{"daemon", "stop", "--any", "--keep-workers"}, exec.calls.get(1));
+        cli.daemonStop(false, false);
+        assertArrayEquals(new String[]{"daemon", "stop"}, exec.calls.get(2));
+    }
+
+    @Test
+    void shouldIssueGateway() {
+        cli.gateway("--config", "gateway.yaml");
+        assertArgs("gateway", "--config", "gateway.yaml");
+    }
+
+    @Test
+    void shouldIssueImportSessions() {
+        cli.importSessions("--dry-run");
+        assertArgs("import", "--dry-run");
+    }
+
+    @Test
+    void shouldIssueSelfHostedRunner() {
+        cli.selfHostedRunner("doctor");
+        assertArgs("self-hosted-runner", "doctor");
+    }
+
+    @Test
+    void shouldIssueAutoModeDefaultsAndReset() {
+        cli.autoMode();
+        assertArrayEquals(new String[]{"auto-mode", "defaults"}, exec.calls.get(0));
+        cli.autoModeDefaults("pre-");
+        assertArrayEquals(new String[]{"auto-mode", "defaults", "--label", "pre-"}, exec.calls.get(1));
+        cli.autoModeReset(true);
+        assertArrayEquals(new String[]{"auto-mode", "reset", "-y"}, exec.calls.get(2));
+        cli.autoModeReset(false);
+        assertArrayEquals(new String[]{"auto-mode", "reset"}, exec.calls.get(3));
+    }
+
+    @Test
+    void shouldBuildPrintOptionsWithNewlyAlignedFlags() {
+        cli.print(new ClaudeCodeCli.PrintOptions("hi")
+                .advisor("opus")
+                .appendSubagentSystemPrompt("be terse")
+                .appendSubagentSystemPromptFile("/tmp/append.md")
+                .autocompact("auto")
+                .axScreenReader(true)
+                .background(true)
+                .execCommand("sleep 1")
+                .cloud(true)
+                .cloudEnvironment("ccpool_1")
+                .cloudRef("main")
+                .forwardSubagentText(true)
+                .init(true)
+                .initOnly(true)
+                .maintenance(true)
+                .maxTurns("12")
+                .permissionPromptTool("mcp__gate__approve")
+                .permissionPrompts("none")
+                .restricted(true)
+                .safeMode(true));
+
+        String joined = String.join(" ", exec.calls.get(0));
+        assertTrue(joined.contains("--advisor opus"));
+        assertTrue(joined.contains("--append-subagent-system-prompt be terse"));
+        assertTrue(joined.contains("--append-subagent-system-prompt-file /tmp/append.md"));
+        assertTrue(joined.contains("--autocompact auto"));
+        assertTrue(joined.contains("--ax-screen-reader"));
+        assertTrue(joined.contains("--bg"));
+        assertTrue(joined.contains("--exec sleep 1"));
+        assertTrue(joined.contains("--cloud"));
+        assertTrue(joined.contains("--environment ccpool_1"));
+        assertTrue(joined.contains("--ref main"));
+        assertTrue(joined.contains("--forward-subagent-text"));
+        assertTrue(joined.contains("--init"));
+        assertTrue(joined.contains("--init-only"));
+        assertTrue(joined.contains("--maintenance"));
+        assertTrue(joined.contains("--max-turns 12"));
+        assertTrue(joined.contains("--permission-prompt-tool mcp__gate__approve"));
+        assertTrue(joined.contains("--permission-prompts none"));
+        assertTrue(joined.contains("--restricted"));
+        assertTrue(joined.contains("--safe-mode"));
+        assertTrue(joined.endsWith("hi"), "prompt must stay the last positional argument");
     }
 }
