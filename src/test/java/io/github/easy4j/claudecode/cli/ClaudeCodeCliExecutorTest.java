@@ -166,6 +166,19 @@ class ClaudeCodeCliExecutorTest {
     }
 
     @Test
+    void shouldDecodeChildOutputAsUtf8() {
+        // The CLIs emit UTF-8 regardless of platform; decoding with the
+        // platform default charset would mojibake on GBK-default Windows.
+        // 你 = \344\275\240, 好 = \345\245\275 (POSIX printf octal escapes).
+        ClaudeCodeCliExecutor exec = newExecutorFor("/bin/sh");
+
+        ClaudeCodeCliResult result = exec.execute("-c", "printf '\\344\\275\\240\\345\\245\\275'");
+
+        assertEquals("你好", result.getStdout(),
+                "child output must be decoded as UTF-8, not the platform default charset");
+    }
+
+    @Test
     void shouldExposeConfigBehaviourOnSuccessAndFailure() {
         ClaudeCodeClientConfig config = new ClaudeCodeClientConfig();
         config.setLocalExecutable("java");
