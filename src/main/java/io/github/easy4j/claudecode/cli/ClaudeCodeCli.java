@@ -49,7 +49,7 @@ import java.util.List;
  *       ({@link #namedSession(String, String)}).</li>
  * </ul>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 3.0.0
  * @see ClaudeCodeCliExecutor
  * @see <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code CLI</a>
@@ -634,6 +634,40 @@ public class ClaudeCodeCli {
     public ClaudeCodeCliResult mcpServe() {
         return executor.execute("mcp", "serve");
     }
+    /**
+     * Runs {@code claude mcp login <name>} — run the MCP OAuth flow (v2.1.186+).
+     *
+     * @param name the MCP server name.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult mcpLogin(String name) {
+        return executor.execute("mcp", "login", name);
+    }
+
+    /**
+     * Runs {@code claude mcp login <name> --no-browser} — headless OAuth flow
+     * (v2.1.186+).
+     *
+     * @param name the MCP server name.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult mcpLoginNoBrowser(String name) {
+        return executor.execute("mcp", "login", name, "--no-browser");
+    }
+
+    /**
+     * Runs {@code claude mcp logout <name>} — clear stored MCP OAuth
+     * credentials (v2.1.186+).
+     *
+     * @param name the MCP server name.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult mcpLogout(String name) {
+        return executor.execute("mcp", "logout", name);
+    }
 
     /**
      * Run {@code claude plugin list}.
@@ -1068,7 +1102,200 @@ public class ClaudeCodeCli {
      * @return the underlying CLI result
      */
     public ClaudeCodeCliResult autoMode() {
-        return executor.execute("auto-mode");
+        return executor.execute("auto-mode", "defaults");
+    }
+
+    /**
+     * Runs {@code claude auto-mode defaults --label <prefix>}.
+     *
+     * @param label optional label prefix for the emitted rules.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult autoModeDefaults(String label) {
+        if (label != null) {
+            return executor.execute("auto-mode", "defaults", "--label", label);
+        }
+        return executor.execute("auto-mode", "defaults");
+    }
+
+    /**
+     * Runs {@code claude auto-mode reset} to restore the default auto-mode
+     * configuration.
+     *
+     * @param assumeYes {@code true} to pass {@code -y} and skip confirmation.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult autoModeReset(boolean assumeYes) {
+        if (assumeYes) {
+            return executor.execute("auto-mode", "reset", "-y");
+        }
+        return executor.execute("auto-mode", "reset");
+    }
+
+    // ============================================================
+    // background sessions / daemon / gateway / import / runner
+    // ============================================================
+
+    /**
+     * Runs {@code claude attach <id>} — attach to a background session.
+     *
+     * @param sessionId the background session identifier.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult attach(String sessionId) {
+        return executor.execute("attach", sessionId);
+    }
+
+    /**
+     * Runs {@code claude logs <id>} — print recent background-session output.
+     *
+     * @param sessionId the background session identifier.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult logs(String sessionId) {
+        return executor.execute("logs", sessionId);
+    }
+
+    /**
+     * Runs {@code claude respawn <id>} — restart a background session.
+     *
+     * @param sessionId the background session identifier.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult respawn(String sessionId) {
+        return executor.execute("respawn", sessionId);
+    }
+
+    /**
+     * Runs {@code claude respawn --all} — restart every running background session.
+     *
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult respawnAll() {
+        return executor.execute("respawn", "--all");
+    }
+
+    /**
+     * Runs {@code claude rm <id>} — remove a background session.
+     *
+     * @param sessionId the background session identifier.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult rm(String sessionId) {
+        return executor.execute("rm", sessionId);
+    }
+
+    /**
+     * Runs {@code claude rm <id> <flags...>} with flags such as
+     * {@code --discard-unpushed <commit>@<worktree-id>} or
+     * {@code --force-remove-worktree <worktree-id>}.
+     *
+     * @param sessionId the background session identifier.
+     * @param flags     extra flags forwarded verbatim.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult rm(String sessionId, String... flags) {
+        String[] all = new String[2 + flags.length];
+        all[0] = "rm";
+        all[1] = sessionId;
+        System.arraycopy(flags, 0, all, 2, flags.length);
+        return executor.execute(all);
+    }
+
+    /**
+     * Runs {@code claude stop <id>} (alias {@code claude kill}) — stop a
+     * background session.
+     *
+     * @param sessionId the background session identifier.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult stop(String sessionId) {
+        return executor.execute("stop", sessionId);
+    }
+
+    /**
+     * Runs {@code claude daemon status} — print the background-supervisor
+     * state (exit {@code 1} when not running).
+     *
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult daemonStatus() {
+        return executor.execute("daemon", "status");
+    }
+
+    /**
+     * Runs {@code claude daemon stop [--any] [--keep-workers]}.
+     *
+     * @param any         {@code true} to pass {@code --any}.
+     * @param keepWorkers {@code true} to pass {@code --keep-workers}.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult daemonStop(boolean any, boolean keepWorkers) {
+        String[] all = new String[2 + (any ? 1 : 0) + (keepWorkers ? 1 : 0)];
+        all[0] = "daemon";
+        all[1] = "stop";
+        int i = 2;
+        if (any) { all[i++] = "--any"; }
+        if (keepWorkers) { all[i] = "--keep-workers"; }
+        return executor.execute(all);
+    }
+
+    /**
+     * Runs {@code claude gateway <args...>} — start the self-hosted gateway
+     * server (v2.1.195+); typically {@code gateway("--config", "gateway.yaml")}.
+     *
+     * @param args arguments forwarded to the gateway command.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult gateway(String... args) {
+        String[] all = new String[args.length + 1];
+        all[0] = "gateway";
+        System.arraycopy(args, 0, all, 1, args.length);
+        return executor.execute(all);
+    }
+
+    /**
+     * Runs {@code claude import <args...>} — interactive {@code /import} from
+     * other agents; supports {@code --dry-run} and {@code --yes}.
+     * (Named {@code importSessions} because {@code import} is a Java keyword.)
+     *
+     * @param args arguments forwarded to the import command.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult importSessions(String... args) {
+        String[] all = new String[args.length + 1];
+        all[0] = "import";
+        System.arraycopy(args, 0, all, 1, args.length);
+        return executor.execute(all);
+    }
+
+    /**
+     * Runs {@code claude self-hosted-runner <args...>} — runner for
+     * self-hosted environments; subcommands {@code setup}, {@code doctor},
+     * {@code orchestrator}.
+     *
+     * @param args subcommand and arguments forwarded verbatim.
+     * @return the CLI invocation result; never {@code null}.
+     * @since 3.0.0
+     */
+    public ClaudeCodeCliResult selfHostedRunner(String... args) {
+        String[] all = new String[args.length + 1];
+        all[0] = "self-hosted-runner";
+        System.arraycopy(args, 0, all, 1, args.length);
+        return executor.execute(all);
     }
 
     // ============================================================
@@ -1082,7 +1309,7 @@ public class ClaudeCodeCli {
      * produces the final argument array passed to
      * {@link ClaudeCodeCliExecutor#execute(String...)}.</p>
      *
-     * @author [@Loong Wan](https://github.com/loong10k)
+     * @author <a href="https://github.com/loong10k">Loong Wan</a>
      * @since 3.0.0
      */
     public static class PrintOptions {
@@ -1254,6 +1481,26 @@ public class ClaudeCodeCli {
 
         /** Remote-control session name prefix. */
         private String remoteControlSessionNamePrefix;
+
+        private String advisor;
+        private String appendSubagentSystemPrompt;
+        private String appendSubagentSystemPromptFile;
+        private String autocompact;
+        private boolean axScreenReader;
+        private boolean background;
+        private String execCommand;
+        private boolean cloud;
+        private String cloudEnvironment;
+        private String cloudRef;
+        private boolean forwardSubagentText;
+        private boolean init;
+        private boolean initOnly;
+        private boolean maintenance;
+        private String maxTurns;
+        private String permissionPromptTool;
+        private String permissionPrompts;
+        private boolean restricted;
+        private boolean safeMode;
 
         /**
          * Create a new {@code PrintOptions} with the supplied prompt.
@@ -1435,6 +1682,45 @@ public class ClaudeCodeCli {
          *
          * @return the CLI argument array (never {@code null})
          */
+        /** Sets the {@code --advisor} flag. @param v advisor model or alias ({@code fable}, {@code opus}, {@code sonnet}). @return this builder. */
+        public PrintOptions advisor(String v) { this.advisor = v; return this; }
+        /** Sets the {@code --append-subagent-system-prompt} flag (print mode only). @param v subagent prompt appendix. @return this builder. */
+        public PrintOptions appendSubagentSystemPrompt(String v) { this.appendSubagentSystemPrompt = v; return this; }
+        /** Sets the {@code --append-subagent-system-prompt-file} flag (print mode only). @param v path to the appendix file. @return this builder. */
+        public PrintOptions appendSubagentSystemPromptFile(String v) { this.appendSubagentSystemPromptFile = v; return this; }
+        /** Sets the {@code --autocompact} flag ({@code auto} or a token count). @param v auto-compact window. @return this builder. */
+        public PrintOptions autocompact(String v) { this.autocompact = v; return this; }
+        /** Sets the {@code --ax-screen-reader} flag. @param v {@code true} for screen-reader-friendly output. @return this builder. */
+        public PrintOptions axScreenReader(boolean v) { this.axScreenReader = v; return this; }
+        /** Sets the {@code --bg}/{@code --background} flag; incompatible with {@code -p}. @param v {@code true} to start a background agent. @return this builder. */
+        public PrintOptions background(boolean v) { this.background = v; return this; }
+        /** Sets the {@code --exec} flag (with {@code --bg}): run a shell command as a PTY background job. @param v the command. @return this builder. */
+        public PrintOptions execCommand(String v) { this.execCommand = v; return this; }
+        /** Sets the {@code --cloud} flag: create a cloud session or queue into an existing one by ID/URL. @param v {@code true} to enable. @return this builder. */
+        public PrintOptions cloud(boolean v) { this.cloud = v; return this; }
+        /** Sets the {@code --environment} flag ({@code ccpool_} self-hosted environment id). @param v environment id. @return this builder. */
+        public PrintOptions cloudEnvironment(String v) { this.cloudEnvironment = v; return this; }
+        /** Sets the {@code --ref} flag (with {@code --environment}): base checkout ref. @param v git ref. @return this builder. */
+        public PrintOptions cloudRef(String v) { this.cloudRef = v; return this; }
+        /** Sets the {@code --forward-subagent-text} flag (needs stream-json). @param v {@code true} to emit subagent text in the stream. @return this builder. */
+        public PrintOptions forwardSubagentText(boolean v) { this.forwardSubagentText = v; return this; }
+        /** Sets the {@code --init} flag (print mode): run Setup hooks with the {@code init} matcher. @param v {@code true} to enable. @return this builder. */
+        public PrintOptions init(boolean v) { this.init = v; return this; }
+        /** Sets the {@code --init-only} flag (print mode): run Setup + SessionStart hooks, then exit. @param v {@code true} to enable. @return this builder. */
+        public PrintOptions initOnly(boolean v) { this.initOnly = v; return this; }
+        /** Sets the {@code --maintenance} flag (print mode): run Setup hooks with the {@code maintenance} matcher. @param v {@code true} to enable. @return this builder. */
+        public PrintOptions maintenance(boolean v) { this.maintenance = v; return this; }
+        /** Sets the {@code --max-turns} flag (print mode): limit agentic turns. @param v turn limit. @return this builder. */
+        public PrintOptions maxTurns(String v) { this.maxTurns = v; return this; }
+        /** Sets the {@code --permission-prompt-tool} flag (print mode): MCP tool answering permission prompts. @param v tool name. @return this builder. */
+        public PrintOptions permissionPromptTool(String v) { this.permissionPromptTool = v; return this; }
+        /** Sets the {@code --permission-prompts} flag (print mode): {@code host} or {@code none}. @param v prompt handler. @return this builder. */
+        public PrintOptions permissionPrompts(String v) { this.permissionPrompts = v; return this; }
+        /** Sets the {@code --restricted} flag: restricted mode for eval harnesses. @param v {@code true} to enable. @return this builder. */
+        public PrintOptions restricted(boolean v) { this.restricted = v; return this; }
+        /** Sets the {@code --safe-mode} flag: start with all customizations disabled. @param v {@code true} to enable. @return this builder. */
+        public PrintOptions safeMode(boolean v) { this.safeMode = v; return this; }
+
         public String[] toArgs() {
             List<String> args = new ArrayList<>();
             if (model != null) { args.add("--model"); args.add(model); }
@@ -1497,6 +1783,25 @@ public class ClaudeCodeCli {
             if (remoteControl != null) { args.add("--remote-control"); args.add(remoteControl); }
             if (remoteControlSessionNamePrefix != null) { args.add("--remote-control-session-name-prefix"); args.add(remoteControlSessionNamePrefix); }
             args.add("-p");
+            if (advisor != null) { args.add("--advisor"); args.add(advisor); }
+            if (appendSubagentSystemPrompt != null) { args.add("--append-subagent-system-prompt"); args.add(appendSubagentSystemPrompt); }
+            if (appendSubagentSystemPromptFile != null) { args.add("--append-subagent-system-prompt-file"); args.add(appendSubagentSystemPromptFile); }
+            if (autocompact != null) { args.add("--autocompact"); args.add(autocompact); }
+            if (axScreenReader) { args.add("--ax-screen-reader"); }
+            if (background) { args.add("--bg"); }
+            if (execCommand != null) { args.add("--exec"); args.add(execCommand); }
+            if (cloud) { args.add("--cloud"); }
+            if (cloudEnvironment != null) { args.add("--environment"); args.add(cloudEnvironment); }
+            if (cloudRef != null) { args.add("--ref"); args.add(cloudRef); }
+            if (forwardSubagentText) { args.add("--forward-subagent-text"); }
+            if (init) { args.add("--init"); }
+            if (initOnly) { args.add("--init-only"); }
+            if (maintenance) { args.add("--maintenance"); }
+            if (maxTurns != null) { args.add("--max-turns"); args.add(maxTurns); }
+            if (permissionPromptTool != null) { args.add("--permission-prompt-tool"); args.add(permissionPromptTool); }
+            if (permissionPrompts != null) { args.add("--permission-prompts"); args.add(permissionPrompts); }
+            if (restricted) { args.add("--restricted"); }
+            if (safeMode) { args.add("--safe-mode"); }
             if (prompt != null) { args.add(prompt); }
             return args.toArray(new String[0]);
         }

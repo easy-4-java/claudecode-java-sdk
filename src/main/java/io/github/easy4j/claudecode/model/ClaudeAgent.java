@@ -27,7 +27,7 @@ import lombok.Data;
  * ({@link JsonIgnoreProperties}). Snake-case names such as {@code session_id}
  * are converted to camel-case via {@link JsonProperty}.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 3.0.0
  */
 @Data

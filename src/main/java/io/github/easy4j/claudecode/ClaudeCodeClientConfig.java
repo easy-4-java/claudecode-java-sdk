@@ -30,7 +30,7 @@ import lombok.Data;
  * can be populated from Spring's {@code @ConfigurationProperties}, plain
  * Java, JSON or a builder.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 3.0.0
  * @see ClaudeCodeClient
  */
@@ -181,4 +181,14 @@ public class ClaudeCodeClientConfig {
 
     /** [DEPRECATED] enable the MCP debug mode. */
     private boolean mcpDebug;
+
+    /**
+     * Additional environment variables merged over the inherited process
+     * environment for every CLI invocation. Use it for the documented Claude
+     * Code variables such as {@code ANTHROPIC_API_KEY}, {@code ANTHROPIC_AUTH_TOKEN},
+     * {@code ANTHROPIC_BASE_URL}, {@code ANTHROPIC_MODEL}, {@code ANTHROPIC_BETAS},
+     * {@code ANTHROPIC_CUSTOM_HEADERS} or {@code HTTP_PROXY}/{@code HTTPS_PROXY}.
+     * May be {@code null}/empty to inherit everything unchanged.
+     */
+    private java.util.Map<String, String> environment;
 }

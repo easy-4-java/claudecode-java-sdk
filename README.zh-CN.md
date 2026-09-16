@@ -63,7 +63,15 @@ SDK 覆盖：
 | 流解析 | 活跃开发 | `printStreamJsonAndParse` → `List<ClaudeMessage>` + 最终 `ClaudeResult` |
 | 会话生命周期 | 活跃开发 | `continueSession`、`resumeSession`、`continueForkSession`、`resumeForkSession`、`withSessionId`、`namedSession`、`printNoPersistence` |
 | 配置模型 | 活跃开发 | `ClaudeCodeClientConfig` POJO（纯对象，可绑定 Spring 配置） |
+| 子命令 | 活跃开发 | `mcp`（list/add/get/remove/serve/login/logout）、`plugin`、`doctor`、`install`、`auth`（login/logout/status）、`agents`、`update`、`setupToken`、`projectPurge`、`ultrareview`、`remoteControl`、`autoMode` |
+| 后台会话与守护进程 | 活跃开发 | `attach`、`logs`、`respawn`、`respawnAll`、`rm`、`stop`、`daemonStatus`、`daemonStop` |
+| 网关 / 导入 / 运行器 | 活跃开发 | `gateway`、`importSessions`（`claude import`，Java 关键字）、`selfHostedRunner` |
+| v2.1.x print 旗标 | 活跃开发 | `--advisor`、`--append-subagent-system-prompt(-file)`、`--autocompact`、`--ax-screen-reader`、`--bg`+`--exec`、`--cloud`+`--environment`+`--ref`、`--forward-subagent-text`、`--init`/`--init-only`/`--maintenance`、`--max-turns`、`--permission-prompt-tool`、`--permission-prompts`、`--restricted`、`--safe-mode` |
+| 环境变量覆盖 | 活跃开发 | `config.environment` 将 `ANTHROPIC_*` / `CLAUDE_*` / 代理变量合并到继承的进程环境 |
 | CLI 可用性探测 | 活跃开发 | `ClaudeCodeCliExecutor.probe()` |
+
+> **升级注意**：CLI 参数改为原样传给子进程——含空格的多词 prompt 不再被塞进字面双引号后发给 `claude`。
+> CLI 非零退出现在保留真实退出码与两路输出，不再折叠为 `exitCode=-1` 加空输出。
 
 > **假设**：以上能力状态反映 1.0.x 分支当前情况；该模块处于活跃开发中。
 
