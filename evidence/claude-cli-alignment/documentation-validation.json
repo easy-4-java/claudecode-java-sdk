@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "validation_kind": "local_documentation_structural_check",
+  "research_date": "2026-09-20",
+  "performed_at": "2026-09-20T16:08:41Z",
+  "counts": {
+    "capability_rows": 33,
+    "spec_domains": 6,
+    "requirements": 36,
+    "scenarios": 72,
+    "acceptance_groups": 36,
+    "unchecked_tasks": 57,
+    "sources": 46,
+    "internal_links_checked_before_report": 288
+  },
+  "checks": [
+    "UTF-8 and balanced code fences",
+    "Contiguous Markdown tables",
+    "Internal links and explicit anchors",
+    "Unique normative requirement IDs and GIVEN/WHEN/THEN scenarios",
+    "Requirement → acceptance → task coverage",
+    "All implementation tasks remain unchecked",
+    "JSON and synthetic NDJSON syntax/provenance",
+    "Pinned remote heads match",
+    "No existing file overwritten",
+    "No Java/runtime source or executable files in payload",
+    "Original worktree/index clean"
+  ],
+  "not_executed": [
+    "OpenSpec CLI strict validation",
+    "Maven / Java tests",
+    "Real Claude CLI",
+    "CodeGraph indexing",
+    "Dynamic security/dependency scan"
+  ],
+  "recovery": "Reconstructed from approved conversation content; old sandbox ZIP unavailable, no byte-for-byte identity claim",
+  "errors": []
+}
