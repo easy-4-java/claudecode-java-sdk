@@ -1,146 +1,55 @@
-# Tasks: 官方 CLI 契约对齐
-
-**全部实施任务待完成。** 本轮只提交文档；任务需先测试失败、再实现、再验证。文档提交不是这批 Java 实施任务完成。
-
-测试编号见 [验收矩阵](../../../docs/claude-cli/acceptance-matrix.md)。六份增量 specs 是唯一规格事实源，不另建冲突计划。
-
-## 1. 证据基线与测试准备
-
-- [ ] 1.1 固定三分支 HEAD、JDK/JSON/Maven，检查开始前无漂移。（要求：COM-001,COM-002；验收：T31,T32）
-
-- [ ] 1.2 选择实际支持 CLI/OS 集合，不把滚动文档当兼容证明。（要求：COM-002,COM-003；验收：T32,T33）
-
-- [ ] 1.3 建立合成/假进程/真实夹具来源、脱敏与保留清单。（要求：COM-002,COM-006；验收：T32,T36）
-
-- [ ] 1.4 建立公共 argv/JSON 预期与三线规范化比较。（要求：COM-001；验收：T31）
-
-- [ ] 1.5 隔离用户全局 Claude 配置，危险和收费测试默认不执行。（要求：ADM-006,COM-006；验收：T30,T36）
-
-## 2. P0 消息结果：先失败测试
-
-- [ ] 2.1 把正文/费用 null 断言改为真实字段断言，保存旧实现失败证据。（要求：MSG-001,COM-004；验收：T06,T34）
-
-- [ ] 2.2 加入嵌套 assistant/content、增量和 unknown 测试。（要求：MSG-002；验收：T07）
-
-- [ ] 2.3 加入缓存规范名/旧别名/冲突/缺失值测试。（要求：MSG-003；验收：T08）
-
-- [ ] 2.4 加入结构化成功、缺失、业务错误、本地映射失败测试。（要求：MSG-004；验收：T09）
-
-- [ ] 2.5 实现原始 envelope 路由和独立 result，旧投影不再恢复结果。（要求：MSG-001,MSG-002；验收：T06,T07）
-
-- [ ] 2.6 修正缓存映射、可选元数据与 structured output 契约。（要求：MSG-003,MSG-004；验收：T08,T09）
-
-- [ ] 2.7 实现 strict/lenient、unknown 保留、有界诊断和脱敏，补坏帧/截断。（要求：MSG-005,COM-006；验收：T10,T36）
-
-- [ ] 2.8 加入增量/全量、多轮计量去重并跑三线 codec 回归。（要求：MSG-006,COM-001；验收：T11,T31）
-
-## 3. P0 命令和配置：先失败测试
-
-- [ ] 3.1 先测 print+bg 冲突与云创建/追加/自托管的合法例外。（要求：CMD-001；验收：T01）
-
-- [ ] 3.2 先测 debug、tmux classic/worktree、schema、数值/互斥逐 token。（要求：CMD-002；验收：T02）
-
-- [ ] 3.3 先测 model 重载保留权限/工具/预算，以及 false/空值。（要求：CMD-003；验收：T03）
-
-- [ ] 3.4 实现意图分派，后台/云创建/server 不走强制 print。（要求：CMD-001,ADM-001；验收：T01,T25）
-
-- [ ] 3.5 实现验证与编码，在 spawn 前返回错误，不删除安全参数。（要求：CMD-002,CMD-005；验收：T02,T05）
-
-- [ ] 3.6 实现 resolver/不可变快照，记录旧完整 PrintOptions 的兼容语义。（要求：CMD-003,RUN-003,COM-005；验收：T03,T14,T35）
-
-- [ ] 3.7 修复含空格 executable 与参数边界，用回显假进程验证。（要求：CMD-004；验收：T04）
-
-- [ ] 3.8 修正配置导入命名、弃用说明和错误行为迁移记录。（要求：ADM-006,COM-005；验收：T30,T35）
-
-## 4. P1 可控执行：先假进程测试
-
-- [ ] 4.1 构造输出首帧后等待宿主的假进程，证明旧非实时，加入拆分 UTF-8。（要求：RUN-001；验收：T12）
-
-- [ ] 4.2 先测一次性 stdin/EOF/空输入与持续模式明确未支持。（要求：RUN-002；验收：T13）
-
-- [ ] 4.3 先测专属 probe 期限、cwd/env 隔离、排空卡住。（要求：RUN-003,RUN-004；验收：T14,T15）
-
-- [ ] 4.4 先测慢消费者/大帧/大输出/非零码/取消竞争/重复 close。（要求：RUN-005,RUN-006,RUN-007；验收：T16,T17,T18）
-
-- [ ] 4.5 实现自有句柄和三路独立 I/O，旧阻塞复用运行器。（要求：RUN-001,RUN-002,RUN-006；验收：T12,T13,T17）
-
-- [ ] 4.6 实现 cwd/env 快照和 probe/start/run/drain 期限。（要求：RUN-003,RUN-004；验收：T14,T15）
-
-- [ ] 4.7 实现有界队列/raw/背压/截断，原始输出不 trim。（要求：RUN-005；验收：T16）
-
-- [ ] 4.8 实现终止原因、真实退出、协议完整与业务分类，保留失败诊断。（要求：RUN-007；验收：T18）
-
-- [ ] 4.9 各平台实现或声明不支持进程树清理，反复运行记录资源基线。（要求：RUN-006,COM-002；验收：T17,T32）
-
-## 5. P1/P2 类型化原生命令
-
-- [ ] 5.1 为管理只读/副作用、scope、TTY 和专属结果建立测试。（要求：ADM-001；验收：T25）
-
-- [ ] 5.2 MCP stdio 分隔、HTTP/JSON、scope/header/env 编码脱敏先测后实现。（要求：ADM-002；验收：T26）
-
-- [ ] 5.3 插件安装/卸载/启停/更新/校验/marketplace 的作用域先测后实现。（要求：ADM-003；验收：T27）
-
-- [ ] 5.4 Plugin eval 独立版本条件，验证部分完成和中断。（要求：ADM-003,COM-003；验收：T27,T33）
-
-- [ ] 5.5 Auth status/显式登录/敏感 token 先测后实现，构造不得改变宿主。（要求：ADM-004；验收：T28）
-
-- [ ] 5.6 后台/无 TTY attach/Remote Control server/gateway/runner 先隔离测试后实现。（要求：ADM-005；验收：T29）
-
-- [ ] 5.7 危险 purge/rm/force/discard 明确目标授权及可用 dry-run，不测用户目录。（要求：ADM-006；验收：T30）
-
-- [ ] 5.8 区分必需依赖加载失败与可选警告，不只依赖退出码。（要求：RUN-007,ADM-002,ADM-003；验收：T18,T26,T27）
-
-## 6. P2 持续会话
-
-- [ ] 6.1 先测 resume 新运行与进程内多轮的身份/所有权。（要求：SES-001；验收：T19）
-
-- [ ] 6.2 先测持续两轮、半关闭后拒绝、发送背压与并发请求。（要求：SES-001,SES-002；验收：T19,T20）
-
-- [ ] 6.3 实现持续句柄、串行写入、每轮结果和半关闭，不把首结果当退出。（要求：SES-002,MSG-006；验收：T20,T11）
-
-- [ ] 6.4 验证断连/取消/剩余输出，不自动重放副作用不确定整轮。（要求：RUN-006,COM-006；验收：T17,T36）
-
-- [ ] 6.5 固定真实 CLI 版本录制受控持续契约，三线保留验证。（要求：COM-001,COM-002；验收：T31,T32）
-
-## 7. 条件式 P2 控制协议
-
-- [ ] 7.1 固定官方 SDK/CLI wire/capability 证据，无证据不猜消息。（要求：SES-003,COM-003；验收：T21,T33）
-
-- [ ] 7.2 先测 init 前事件、缺失/未知能力、明确不支持，再实现协商。（要求：SES-003；验收：T21）
-
-- [ ] 7.3 审批/问答 allow/deny/改输入/超时/取消/迟到先测后实现。（要求：SES-004；验收：T22）
-
-- [ ] 7.4 先测 Hook 观察/控制区分及审批不覆盖全部工具，再适配。（要求：SES-005；验收：T23）
-
-- [ ] 7.5 检查点协议验证后实现有限回退，测试受控编辑和副作用限制。（要求：SES-006；验收：T24）
-
-- [ ] 7.6 未验证高级能力保持 UNKNOWN/UNSUPPORTED，不入支持表。（要求：CMD-005,COM-002,COM-003；验收：T05,T32,T33）
-
-## 8. 三线回归与发布文档
-
-- [ ] 8.1 分别在 Java 8/17/21 及相应 Jackson/Maven 跑公共夹具，记录 commit/结果。（要求：COM-001；验收：T31）
-
-- [ ] 8.2 编译旧入口/新公共模型样例，检查 Jackson/高版本 Java 类型泄漏。（要求：COM-005；验收：T35）
-
-- [ ] 8.3 运行日志/诊断、权限默认、自动重试和危险管理安全回归。（要求：COM-006,CMD-003；验收：T36,T03）
-
-- [ ] 8.4 确认覆盖率门禁实际阻断，报告实测值而非配置门槛。（要求：COM-004；验收：T34）
-
-- [ ] 8.5 完成平台资源测试和依赖安全检查，明确 NOT_RUN/不支持项。（要求：RUN-006,COM-002,COM-006；验收：T17,T32,T36）
-
-- [ ] 8.6 更新 README 构建/测试/CI/CLI 能力和迁移，发布状态另查系统。（要求：COM-004,COM-005；验收：T34,T35）
-
-- [ ] 8.7 在官方 OpenSpec CLI 可用时严格校验，实现一致后才归档。（要求：COM-004；验收：T34）
-
-- [ ] 8.8 后续实施获提交授权时同步代码到三分支并查各自 CI；未做不标完成。（要求：COM-001,COM-004；验收：T31,T34）
-
-
-## 执行顺序与测试组织
-
-阶段 1–3 先修正确性；阶段 4 建可控执行；阶段 5 按依赖补原生管理；阶段 6–7 遵循持续与协议门槛；阶段 8 证据和发布收口。先一线完成再 backport，另一线提交不能替代其测试。
-
-复用现有 ClaudeCodeClientTest、ClaudeCodeCliTest、ClaudeCodeCliExecutorTest 和模型测试。新增 codec、command-contract、process-fixture、session-control、management-contract 测试集分组。公共夹具建议 `src/test/resources/contracts/claude/`；合成与真实录制分目录附来源。平台专属测试明确 enable/skip 条件。
-
-## 禁止虚假收尾
-
-不能因文档提交勾实施任务；不能因旧测试绿保留错误 null；不能因单分支编译宣称三线完成；不能因 watchdog 存在宣称跨平台无泄漏；不能没有 CLI 版本证据就称官方全功能对齐。
+# Tasks
+
+All implementation tasks are initially unchecked.
+
+## P0 - Correctness
+
+- [ ] Add failing regression tests proving final result text/cost/usage must survive stream-json parsing.
+- [ ] Replace lossy `ClaudeMessage -> ClaudeResult` conversion with raw-envelope typed decoding.
+- [ ] Model nested assistant/user/content events and unknown envelopes.
+- [ ] Correct cache usage names to `cache_creation_input_tokens` / `cache_read_input_tokens`, retaining deliberate compatibility aliases if needed.
+- [ ] Add command-intent validation; reject print + background and other confirmed-invalid combinations before spawn.
+- [ ] Unify client-default merge behavior across print/json/stream convenience entry points.
+- [ ] Make explicit `false` and empty-value overrides observable.
+- [ ] Add golden argv tests for debug, tmux/worktree, schema and security-related options.
+
+## P1 - Runtime
+
+- [ ] Introduce an execution handle with event subscription/callback and cancellation.
+- [ ] Stream stdout incrementally and drain stderr independently.
+- [ ] Add incremental UTF-8 decoder tests, including split multibyte sequences.
+- [ ] Add per-run working directory and immutable environment snapshot.
+- [ ] Separate probe/start/run/drain timeout settings.
+- [ ] Add bounded queues/output retention and explicit overflow policy.
+- [ ] Make close/cancel idempotent and define owned-process cleanup.
+- [ ] Add controlled fake-process tests for timeout, cancellation, backpressure and process exit races.
+- [ ] Separate OS/transport/protocol/business termination classifications.
+
+## P1/P2 - Typed CLI management
+
+- [ ] Add typed structured-output request/result.
+- [ ] Add typed MCP transport/scope/auth management while retaining raw passthrough.
+- [ ] Add typed plugin management and plugin-eval result handling.
+- [ ] Add read-only auth status plus explicit login/token setup flows.
+- [ ] Add typed background/session operations and explicit destructive-operation targets.
+- [ ] Separate Remote Control session options from long-running server lifecycle.
+- [ ] Treat gateway/self-hosted runner as long-running or dispatch-specific operations.
+- [ ] Correct misleading import API naming with a migration-compatible alias.
+
+## Conditional P2 - Persistent control
+
+- [ ] Pin target Claude CLI/official SDK versions and record control-protocol evidence.
+- [ ] Implement persistent streaming-input handle and ordered multi-turn send.
+- [ ] Implement approval/user-input callbacks only after wire behavior is verified.
+- [ ] Implement programmatic hook/checkpoint control only after capability evidence exists.
+- [ ] Add timeout/cancel/late-response tests for host callbacks.
+
+## Cross-branch and release
+
+- [ ] Keep behavior and protocol fixtures identical across 1.0.x / 2.0.x / 3.0.x.
+- [ ] Maintain only JDK/Jackson/platform adapter differences.
+- [ ] Run each branch on its minimum JDK/build baseline.
+- [ ] Add real CLI compatibility fixtures with recorded CLI version and platform.
+- [ ] Correct README statements about Maven, tests and CI where stale.
+- [ ] Run dependency/security/resource-leak checks before production-ready claims.
+- [ ] Do not mark this OpenSpec change implemented until every applicable acceptance item has fresh evidence.
