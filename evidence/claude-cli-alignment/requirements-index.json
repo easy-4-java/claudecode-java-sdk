@@ -1,0 +1,218 @@
+[
+  {
+    "domain": "cli-command-contract",
+    "id": "CMD-001",
+    "title": "命令意图与合法模式",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-command-contract",
+    "id": "CMD-002",
+    "title": "类型化选项与组合校验",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-command-contract",
+    "id": "CMD-003",
+    "title": "一致的高层默认配置",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-command-contract",
+    "id": "CMD-004",
+    "title": "参数与执行目标保真",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-command-contract",
+    "id": "CMD-005",
+    "title": "能力未知的显式处理",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-message-protocol",
+    "id": "MSG-001",
+    "title": "无损 envelope 与结果保留",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-message-protocol",
+    "id": "MSG-002",
+    "title": "结构化消息与未知事件",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-message-protocol",
+    "id": "MSG-003",
+    "title": "用量字段与结果状态",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-message-protocol",
+    "id": "MSG-004",
+    "title": "结构化输出契约",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-message-protocol",
+    "id": "MSG-005",
+    "title": "解析问题可见且受控",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-message-protocol",
+    "id": "MSG-006",
+    "title": "顺序、轮次与去重",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-001",
+    "title": "真正实时事件输出",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-002",
+    "title": "一次性与持续输入分离",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-003",
+    "title": "调用隔离与 cwd",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-004",
+    "title": "独立探测与执行期限",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-005",
+    "title": "有界内存与可见背压",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-006",
+    "title": "取消关闭与资源所有权",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-process-runtime",
+    "id": "RUN-007",
+    "title": "进程与业务终态分离",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-session-control",
+    "id": "SES-001",
+    "title": "会话身份与进程所有权分离",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-session-control",
+    "id": "SES-002",
+    "title": "持续多轮与半关闭",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-session-control",
+    "id": "SES-003",
+    "title": "控制协议能力确认",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-session-control",
+    "id": "SES-004",
+    "title": "审批和提问生命周期",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-session-control",
+    "id": "SES-005",
+    "title": "观察与控制 Hook 分离",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-session-control",
+    "id": "SES-006",
+    "title": "检查点范围",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-management",
+    "id": "ADM-001",
+    "title": "管理与透传边界",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-management",
+    "id": "ADM-002",
+    "title": "MCP 配置和 scope",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-management",
+    "id": "ADM-003",
+    "title": "插件操作与评测",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-management",
+    "id": "ADM-004",
+    "title": "认证与敏感输出",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-management",
+    "id": "ADM-005",
+    "title": "后台与远程生命周期",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-management",
+    "id": "ADM-006",
+    "title": "配置导入和危险操作",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-compatibility-evidence",
+    "id": "COM-001",
+    "title": "三线共同契约",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-compatibility-evidence",
+    "id": "COM-002",
+    "title": "版本和夹具可追踪",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-compatibility-evidence",
+    "id": "COM-003",
+    "title": "能力证据与版本检测",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-compatibility-evidence",
+    "id": "COM-004",
+    "title": "验证不得伪装",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-compatibility-evidence",
+    "id": "COM-005",
+    "title": "公共 API 兼容与迁移",
+    "scenario_count": 2
+  },
+  {
+    "domain": "cli-compatibility-evidence",
+    "id": "COM-006",
+    "title": "安全诊断与副作用边界",
+    "scenario_count": 2
+  }
+]

@@ -1,0 +1,701 @@
+[
+  {
+    "task_id": "1.1",
+    "stage": 1,
+    "requirement_ids": [
+      "COM-001",
+      "COM-002"
+    ],
+    "acceptance_ids": [
+      "T31",
+      "T32"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "1.2",
+    "stage": 1,
+    "requirement_ids": [
+      "COM-002",
+      "COM-003"
+    ],
+    "acceptance_ids": [
+      "T32",
+      "T33"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "1.3",
+    "stage": 1,
+    "requirement_ids": [
+      "COM-002",
+      "COM-006"
+    ],
+    "acceptance_ids": [
+      "T32",
+      "T36"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "1.4",
+    "stage": 1,
+    "requirement_ids": [
+      "COM-001"
+    ],
+    "acceptance_ids": [
+      "T31"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "1.5",
+    "stage": 1,
+    "requirement_ids": [
+      "ADM-006",
+      "COM-006"
+    ],
+    "acceptance_ids": [
+      "T30",
+      "T36"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.1",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-001",
+      "COM-004"
+    ],
+    "acceptance_ids": [
+      "T06",
+      "T34"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.2",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-002"
+    ],
+    "acceptance_ids": [
+      "T07"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.3",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-003"
+    ],
+    "acceptance_ids": [
+      "T08"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.4",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-004"
+    ],
+    "acceptance_ids": [
+      "T09"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.5",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-001",
+      "MSG-002"
+    ],
+    "acceptance_ids": [
+      "T06",
+      "T07"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.6",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-003",
+      "MSG-004"
+    ],
+    "acceptance_ids": [
+      "T08",
+      "T09"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.7",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-005",
+      "COM-006"
+    ],
+    "acceptance_ids": [
+      "T10",
+      "T36"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "2.8",
+    "stage": 2,
+    "requirement_ids": [
+      "MSG-006",
+      "COM-001"
+    ],
+    "acceptance_ids": [
+      "T11",
+      "T31"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.1",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-001"
+    ],
+    "acceptance_ids": [
+      "T01"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.2",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-002"
+    ],
+    "acceptance_ids": [
+      "T02"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.3",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-003"
+    ],
+    "acceptance_ids": [
+      "T03"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.4",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-001",
+      "ADM-001"
+    ],
+    "acceptance_ids": [
+      "T01",
+      "T25"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.5",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-002",
+      "CMD-005"
+    ],
+    "acceptance_ids": [
+      "T02",
+      "T05"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.6",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-003",
+      "RUN-003",
+      "COM-005"
+    ],
+    "acceptance_ids": [
+      "T03",
+      "T14",
+      "T35"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.7",
+    "stage": 3,
+    "requirement_ids": [
+      "CMD-004"
+    ],
+    "acceptance_ids": [
+      "T04"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "3.8",
+    "stage": 3,
+    "requirement_ids": [
+      "ADM-006",
+      "COM-005"
+    ],
+    "acceptance_ids": [
+      "T30",
+      "T35"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.1",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-001"
+    ],
+    "acceptance_ids": [
+      "T12"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.2",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-002"
+    ],
+    "acceptance_ids": [
+      "T13"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.3",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-003",
+      "RUN-004"
+    ],
+    "acceptance_ids": [
+      "T14",
+      "T15"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.4",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-005",
+      "RUN-006",
+      "RUN-007"
+    ],
+    "acceptance_ids": [
+      "T16",
+      "T17",
+      "T18"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.5",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-001",
+      "RUN-002",
+      "RUN-006"
+    ],
+    "acceptance_ids": [
+      "T12",
+      "T13",
+      "T17"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.6",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-003",
+      "RUN-004"
+    ],
+    "acceptance_ids": [
+      "T14",
+      "T15"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.7",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-005"
+    ],
+    "acceptance_ids": [
+      "T16"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.8",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-007"
+    ],
+    "acceptance_ids": [
+      "T18"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "4.9",
+    "stage": 4,
+    "requirement_ids": [
+      "RUN-006",
+      "COM-002"
+    ],
+    "acceptance_ids": [
+      "T17",
+      "T32"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.1",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-001"
+    ],
+    "acceptance_ids": [
+      "T25"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.2",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-002"
+    ],
+    "acceptance_ids": [
+      "T26"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.3",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-003"
+    ],
+    "acceptance_ids": [
+      "T27"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.4",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-003",
+      "COM-003"
+    ],
+    "acceptance_ids": [
+      "T27",
+      "T33"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.5",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-004"
+    ],
+    "acceptance_ids": [
+      "T28"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.6",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-005"
+    ],
+    "acceptance_ids": [
+      "T29"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.7",
+    "stage": 5,
+    "requirement_ids": [
+      "ADM-006"
+    ],
+    "acceptance_ids": [
+      "T30"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "5.8",
+    "stage": 5,
+    "requirement_ids": [
+      "RUN-007",
+      "ADM-002",
+      "ADM-003"
+    ],
+    "acceptance_ids": [
+      "T18",
+      "T26",
+      "T27"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "6.1",
+    "stage": 6,
+    "requirement_ids": [
+      "SES-001"
+    ],
+    "acceptance_ids": [
+      "T19"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "6.2",
+    "stage": 6,
+    "requirement_ids": [
+      "SES-001",
+      "SES-002"
+    ],
+    "acceptance_ids": [
+      "T19",
+      "T20"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "6.3",
+    "stage": 6,
+    "requirement_ids": [
+      "SES-002",
+      "MSG-006"
+    ],
+    "acceptance_ids": [
+      "T20",
+      "T11"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "6.4",
+    "stage": 6,
+    "requirement_ids": [
+      "RUN-006",
+      "COM-006"
+    ],
+    "acceptance_ids": [
+      "T17",
+      "T36"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "6.5",
+    "stage": 6,
+    "requirement_ids": [
+      "COM-001",
+      "COM-002"
+    ],
+    "acceptance_ids": [
+      "T31",
+      "T32"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "7.1",
+    "stage": 7,
+    "requirement_ids": [
+      "SES-003",
+      "COM-003"
+    ],
+    "acceptance_ids": [
+      "T21",
+      "T33"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "7.2",
+    "stage": 7,
+    "requirement_ids": [
+      "SES-003"
+    ],
+    "acceptance_ids": [
+      "T21"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "7.3",
+    "stage": 7,
+    "requirement_ids": [
+      "SES-004"
+    ],
+    "acceptance_ids": [
+      "T22"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "7.4",
+    "stage": 7,
+    "requirement_ids": [
+      "SES-005"
+    ],
+    "acceptance_ids": [
+      "T23"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "7.5",
+    "stage": 7,
+    "requirement_ids": [
+      "SES-006"
+    ],
+    "acceptance_ids": [
+      "T24"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "7.6",
+    "stage": 7,
+    "requirement_ids": [
+      "CMD-005",
+      "COM-002",
+      "COM-003"
+    ],
+    "acceptance_ids": [
+      "T05",
+      "T32",
+      "T33"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.1",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-001"
+    ],
+    "acceptance_ids": [
+      "T31"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.2",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-005"
+    ],
+    "acceptance_ids": [
+      "T35"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.3",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-006",
+      "CMD-003"
+    ],
+    "acceptance_ids": [
+      "T36",
+      "T03"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.4",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-004"
+    ],
+    "acceptance_ids": [
+      "T34"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.5",
+    "stage": 8,
+    "requirement_ids": [
+      "RUN-006",
+      "COM-002",
+      "COM-006"
+    ],
+    "acceptance_ids": [
+      "T17",
+      "T32",
+      "T36"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.6",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-004",
+      "COM-005"
+    ],
+    "acceptance_ids": [
+      "T34",
+      "T35"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.7",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-004"
+    ],
+    "acceptance_ids": [
+      "T34"
+    ],
+    "status": "NOT_STARTED"
+  },
+  {
+    "task_id": "8.8",
+    "stage": 8,
+    "requirement_ids": [
+      "COM-001",
+      "COM-004"
+    ],
+    "acceptance_ids": [
+      "T31",
+      "T34"
+    ],
+    "status": "NOT_STARTED"
+  }
+]

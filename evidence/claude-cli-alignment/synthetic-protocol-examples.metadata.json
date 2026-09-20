@@ -1,0 +1,12 @@
+{
+  "origin": "synthetic",
+  "executed": false,
+  "recorded_cli_version": null,
+  "purpose": "Illustrative documentation input; not a recorded full CLI session",
+  "intended_acceptance_ids": [
+    "T06",
+    "T07",
+    "T08"
+  ],
+  "contains_real_credentials": false
+}

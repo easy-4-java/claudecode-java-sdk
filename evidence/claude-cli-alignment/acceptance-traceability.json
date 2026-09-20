@@ -1,0 +1,435 @@
+[
+  {
+    "test_id": "T01",
+    "requirement_id": "CMD-001",
+    "domain": "cli-command-contract",
+    "kind": "ARGV/CLI",
+    "priority": "P0",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S04",
+      "D01",
+      "D20",
+      "D22"
+    ]
+  },
+  {
+    "test_id": "T02",
+    "requirement_id": "CMD-002",
+    "domain": "cli-command-contract",
+    "kind": "ARGV",
+    "priority": "P0",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S04",
+      "D01"
+    ]
+  },
+  {
+    "test_id": "T03",
+    "requirement_id": "CMD-003",
+    "domain": "cli-command-contract",
+    "kind": "ARGV",
+    "priority": "P0",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S01",
+      "S05",
+      "S08"
+    ]
+  },
+  {
+    "test_id": "T04",
+    "requirement_id": "CMD-004",
+    "domain": "cli-command-contract",
+    "kind": "PROCESS/ARGV",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02"
+    ]
+  },
+  {
+    "test_id": "T05",
+    "requirement_id": "CMD-005",
+    "domain": "cli-command-contract",
+    "kind": "CONTRACT/CLI",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D01"
+    ]
+  },
+  {
+    "test_id": "T06",
+    "requirement_id": "MSG-001",
+    "domain": "cli-message-protocol",
+    "kind": "CODEC",
+    "priority": "P0",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S01",
+      "S03",
+      "S07"
+    ]
+  },
+  {
+    "test_id": "T07",
+    "requirement_id": "MSG-002",
+    "domain": "cli-message-protocol",
+    "kind": "CODEC",
+    "priority": "P0",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S03",
+      "S07",
+      "D04"
+    ]
+  },
+  {
+    "test_id": "T08",
+    "requirement_id": "MSG-003",
+    "domain": "cli-message-protocol",
+    "kind": "CODEC",
+    "priority": "P0",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S06",
+      "D07"
+    ]
+  },
+  {
+    "test_id": "T09",
+    "requirement_id": "MSG-004",
+    "domain": "cli-message-protocol",
+    "kind": "CODEC/CLI",
+    "priority": "P0/P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D06",
+      "S05"
+    ]
+  },
+  {
+    "test_id": "T10",
+    "requirement_id": "MSG-005",
+    "domain": "cli-message-protocol",
+    "kind": "CODEC/SECURITY",
+    "priority": "P0/P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S01"
+    ]
+  },
+  {
+    "test_id": "T11",
+    "requirement_id": "MSG-006",
+    "domain": "cli-message-protocol",
+    "kind": "CODEC",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D04",
+      "D07"
+    ]
+  },
+  {
+    "test_id": "T12",
+    "requirement_id": "RUN-001",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02",
+      "S05"
+    ]
+  },
+  {
+    "test_id": "T13",
+    "requirement_id": "RUN-002",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02",
+      "D05"
+    ]
+  },
+  {
+    "test_id": "T14",
+    "requirement_id": "RUN-003",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS/CONCURRENCY",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02",
+      "S08"
+    ]
+  },
+  {
+    "test_id": "T15",
+    "requirement_id": "RUN-004",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02",
+      "S08"
+    ]
+  },
+  {
+    "test_id": "T16",
+    "requirement_id": "RUN-005",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS/LOAD",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02"
+    ]
+  },
+  {
+    "test_id": "T17",
+    "requirement_id": "RUN-006",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS/PLATFORM",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S01",
+      "S02",
+      "D28"
+    ]
+  },
+  {
+    "test_id": "T18",
+    "requirement_id": "RUN-007",
+    "domain": "cli-process-runtime",
+    "kind": "PROCESS/CODEC",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S02",
+      "D02"
+    ]
+  },
+  {
+    "test_id": "T19",
+    "requirement_id": "SES-001",
+    "domain": "cli-session-control",
+    "kind": "SESSION",
+    "priority": "P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D08"
+    ]
+  },
+  {
+    "test_id": "T20",
+    "requirement_id": "SES-002",
+    "domain": "cli-session-control",
+    "kind": "SESSION/PROCESS",
+    "priority": "P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D05"
+    ]
+  },
+  {
+    "test_id": "T21",
+    "requirement_id": "SES-003",
+    "domain": "cli-session-control",
+    "kind": "PROTOCOL/CLI",
+    "priority": "条件式 P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D02"
+    ]
+  },
+  {
+    "test_id": "T22",
+    "requirement_id": "SES-004",
+    "domain": "cli-session-control",
+    "kind": "PROTOCOL/SECURITY",
+    "priority": "条件式 P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D09",
+      "D10"
+    ]
+  },
+  {
+    "test_id": "T23",
+    "requirement_id": "SES-005",
+    "domain": "cli-session-control",
+    "kind": "PROTOCOL",
+    "priority": "条件式 P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D11",
+      "D23"
+    ]
+  },
+  {
+    "test_id": "T24",
+    "requirement_id": "SES-006",
+    "domain": "cli-session-control",
+    "kind": "CLI/FILESYSTEM",
+    "priority": "条件式 P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D19"
+    ]
+  },
+  {
+    "test_id": "T25",
+    "requirement_id": "ADM-001",
+    "domain": "cli-management",
+    "kind": "ARGV/RESULT",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S12"
+    ]
+  },
+  {
+    "test_id": "T26",
+    "requirement_id": "ADM-002",
+    "domain": "cli-management",
+    "kind": "ARGV/CLI",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D12",
+      "S12"
+    ]
+  },
+  {
+    "test_id": "T27",
+    "requirement_id": "ADM-003",
+    "domain": "cli-management",
+    "kind": "ARGV/CLI",
+    "priority": "P1/P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D13",
+      "D14"
+    ]
+  },
+  {
+    "test_id": "T28",
+    "requirement_id": "ADM-004",
+    "domain": "cli-management",
+    "kind": "MANAGEMENT/SECURITY",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D16",
+      "S12"
+    ]
+  },
+  {
+    "test_id": "T29",
+    "requirement_id": "ADM-005",
+    "domain": "cli-management",
+    "kind": "PROCESS/CLI",
+    "priority": "P2",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D15",
+      "D21",
+      "D22"
+    ]
+  },
+  {
+    "test_id": "T30",
+    "requirement_id": "ADM-006",
+    "domain": "cli-management",
+    "kind": "ARGV/SAFETY",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D01",
+      "S12"
+    ]
+  },
+  {
+    "test_id": "T31",
+    "requirement_id": "COM-001",
+    "domain": "cli-compatibility-evidence",
+    "kind": "CI/PARITY",
+    "priority": "所有阶段",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S09",
+      "S13",
+      "S14"
+    ]
+  },
+  {
+    "test_id": "T32",
+    "requirement_id": "COM-002",
+    "domain": "cli-compatibility-evidence",
+    "kind": "EVIDENCE",
+    "priority": "所有阶段",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S15"
+    ]
+  },
+  {
+    "test_id": "T33",
+    "requirement_id": "COM-003",
+    "domain": "cli-compatibility-evidence",
+    "kind": "CONTRACT/CLI",
+    "priority": "P1",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D01",
+      "D02"
+    ]
+  },
+  {
+    "test_id": "T34",
+    "requirement_id": "COM-004",
+    "domain": "cli-compatibility-evidence",
+    "kind": "TEST-QUALITY",
+    "priority": "P0/发布",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S07",
+      "S10"
+    ]
+  },
+  {
+    "test_id": "T35",
+    "requirement_id": "COM-005",
+    "domain": "cli-compatibility-evidence",
+    "kind": "API/BUILD",
+    "priority": "所有阶段",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "S09",
+      "S13",
+      "S14"
+    ]
+  },
+  {
+    "test_id": "T36",
+    "requirement_id": "COM-006",
+    "domain": "cli-compatibility-evidence",
+    "kind": "SECURITY/OPERATIONS",
+    "priority": "所有阶段",
+    "status": "NOT_RUN",
+    "source_ids": [
+      "D16",
+      "D17",
+      "D18",
+      "D24"
+    ]
+  }
+]
